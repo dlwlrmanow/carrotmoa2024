@@ -23,8 +23,8 @@ public class AccommodationKeywordSearchResultApiController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AccommodationResultResponse>> searchByKeyword(@RequestParam("keyword") String keyword) {
-        List<AccommodationResultResponse> rooms = accommodationSearchResultService.searchAccommodations(keyword);
+    public ResponseEntity<List<AccommodationResultResponse>> searchByKeyword(@RequestParam("keyword") String keyword, @RequestParam(required = false, defaultValue = "0") Long lastId, @RequestParam(defaultValue = "5") int limit) {
+        List<AccommodationResultResponse> rooms = accommodationSearchResultService.searchAccommodations(keyword, lastId, limit);
 
         if(rooms.isEmpty() || rooms == null){
             return ResponseEntity.ok(Collections.emptyList());

@@ -3,14 +3,23 @@
   width: 100%;
   flex-direction: column;
 }
-
-/* room-list 스타일 */
-#room-list {
+.row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px; /* 카드 간격 좁히기 */
+  width: 1080px;
+  gap: 20px;
+}
+/* room-list 스타일 */
+#room-list {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(4, 1fr);
+  /*justify-content: space-between;*/
+  gap: 20px; /* 카드 간격 좁히기 */
   padding: 20px;
+  width: 880px; /* 총 카드 영역의 너비 (200px × 4 + 간격 20px × 3) */
+  margin: 0 auto; /* 중앙 정렬 */
+  /*padding: 20px 0; !* 상하 여백 *!*/
 }
 
 /* 각 카드 너비 설정 (5개 카드 한 줄에 배치) */
@@ -49,7 +58,6 @@
   /*white-space: nowrap;*/
   /*text-overflow: ellipsis;*/
   margin-bottom: 8px;
-  /*line-height: 1.5;*/
   font-weight: bold;
 }
 #room-list article h5 {
@@ -77,6 +85,12 @@
   unicode-bidi: isolate;
 }
 
+#room-list article .price {
+  font-weight: bold;
+  color: #ff5722; /* 강조 색상 */
+  text-align: center;
+}
+
 #room-list .card-text span {
   font-weight: bold;
   color: #000;
@@ -100,4 +114,15 @@
   text-overflow: ellipsis;
   margin-bottom: 2px;
   line-height: 1.5;
+}
+
+/* a 태그 기본 스타일 제거 */
+#room-list a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 글자 색상 상속 */
+}
+
+#room-list a:hover {
+  text-decoration: none; /* 호버 시에도 밑줄 제거 */
+  color: inherit; /* 글자 색상 유지 */
 }
