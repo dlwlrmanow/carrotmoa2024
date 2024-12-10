@@ -3,33 +3,37 @@
       layout:decorate="~{layout/layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <title th:text="${keyword} + ' 단기임대 숙소 | 당근모아'"> 단기임대 숙소 | 당근모아 </title>
+  <title> 단기임대 숙소 | 당근모아 </title>
   <link rel="stylesheet" th:href="@{/css/guest-search-result.css}"/>
 </head>
 
-<main layout:fragment="main">
-  <div class="container mt-5">
-    <div class="row">
-      <th:block th:each="room : ${rooms}">
-        <div class="col-md-3 mb-4">
-          <div class="card">
-            <a target="_blank" th:href="@{/room/detail/{id}(id=${room.id})}">
-              <img alt="숙소 이미지" class="card-img-top" th:src="${room.imageUrl}">
-              <div class="card-body">
-                <h5 class="card-title" th:text="${room.title}">Room Name</h5>
-                <p class="card-text" th:text="${room.roadAddress}">Address</p>
-                <p class="card-text price" th:text="${room.price} + ' 원 / 1주'">Price</p>
-                <p class="card-text">
-                  <span
-                      th:text="'방' + ${room.roomTypeCount[0]} + '/ 화장실 ' + ${room.roomTypeCount[1]} + '/ 거실 ' + ${room.roomTypeCount[2]} + '/ 주방 ' + ${room.roomTypeCount[3]}">RoomType</span>
-                </p>
-                <input name="id" th:value="${room.id}" type="hidden">
-              </div>
-            </a>
+<main class="main-container" layout:fragment="main">
+  <div id="room-list"></div>
+
+  <template id="item-template">
+    <article>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <div class="card">
+              <a id="item-detail" target="_blank" href="#">
+                <img alt="숙소 이미지" class="card-img-top" src="">
+                <div class="card-body">
+                  <h5 class="card-title" id="item-title"></h5>
+                  <p class="card-text" id="item-addr"></p>
+                  <p class="card-text price" id="item-price"></p>
+                  <p class="card-text">
+                    <span id="item-space"></span>
+                  </p>
+                  <input name="id" value="" type="hidden">
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-      </th:block>
-    </div>
-  </div>
+      </div>
+    </article>
+  </template>
+  <script src="/js/keyword-search-result.js" type="text/javascript"></script>
 </main>
 </html>
