@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 //@RestController
 @RequestMapping("/guest/booking/list")
-public class GetBookingListController {
+public class ReservationListApiController {
+    private final ReservationService reservationService;
+
     @Autowired
-    ReservationService reservationService;
+    public ReservationListApiController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
 //    @GetMapping("/{id}") // postman test
 //    public List<BookingListResponse> getList(@PathVariable("id") Long id) {
@@ -38,4 +42,14 @@ public class GetBookingListController {
 //        model.addAttribute("image", image);
         return "guest/bookingList";
     }
+
+//    @GetMapping
+//    public List<GuestReservationResponse> getBookingList(@ModelAttribute("user") CustomUserDetails user) {
+//        if (user == null) {
+//            return "user/"
+//        }
+//
+//        List<GuestReservationResponse> bookings = reservationService.getAccommodationImageByUserId(id);
+//
+//    }
 }
