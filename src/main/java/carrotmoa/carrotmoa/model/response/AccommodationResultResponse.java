@@ -8,10 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
+//@Setter
 @Builder
 public class AccommodationResultResponse {
-    private long id;
+    private Long id;
     private String title;
     private String roadAddress;
     private BigDecimal price;
@@ -20,10 +20,10 @@ public class AccommodationResultResponse {
 
     public static AccommodationResultResponse fromData(Object[] data) {
         List<Integer> roomTypeCounts = Arrays.asList(
-            (Integer) data[5],
-            (Integer) data[6],
-            (Integer) data[7],
-            (Integer) data[8]
+                ((Long) data[5]).intValue(),
+                ((Long) data[6]).intValue(),
+                ((Long) data[7]).intValue(),
+                ((Long) data[8]).intValue()
         );
 
         return AccommodationResultResponse.builder()

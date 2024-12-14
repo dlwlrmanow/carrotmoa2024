@@ -1,103 +1,160 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+#main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
-
-.container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.card {
-  width: 200px;
-  height: 385px;
-  border: none;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card-img-top {
-  width: 208px;
-  height: 200px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 15px;
-}
-
-.card-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.card-text {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.card-text span {
-  font-weight: bold;
-  color: #000;
-}
-
-.card a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .row {
   display: flex;
   flex-wrap: wrap;
   width: 1080px;
   gap: 20px;
 }
-
-.col-md-4 {
-  flex: 0 0 32%;
-  max-width: 32%;
+/* room-list 스타일 */
+#room-list {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(4, 1fr);
+  /*justify-content: space-between;*/
+  gap: 20px; /* 카드 간격 좁히기 */
+  padding: 20px;
+  width: 880px; /* 총 카드 영역의 너비 (200px × 4 + 간격 20px × 3) */
+  margin: 0 auto; /* 중앙 정렬 */
+  /*padding: 20px 0; !* 상하 여백 *!*/
 }
 
-.mb-4 {
-  margin-bottom: 20px;
-}
-
-.mt-5 {
-  margin-top: 40px;
-}
-
-/* 추천 카테고리 스타일 */
-.filter-category {
-  margin-bottom: 20px;
-}
-
-.filter-category button {
+/* 각 카드 너비 설정 (5개 카드 한 줄에 배치) */
+#room-list article {
+  width: 200px;
+  height: 385px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  padding: 8px 16px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+/* 카드 이미지 크기 조정 */
+#room-list article .card-img-top {
+  width: 208px;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px; /* 왼쪽 위 모서리 둥글게 */
+  border-top-right-radius: 10px; /* 오른쪽 위 모서리 둥글게 */
 }
 
-.filter-category button:hover {
-  background-color: #f0f0f0;
+
+/* 카드 내용 영역 */
+#room-list article .card-body {
+  padding: 15px;
 }
 
-/* 가격 태그 강조 */
-.card-text .price {
+
+#room-list article .card-title {
+  font-size: 18px;
+  /*letter-spacing: -0.02px;*/
+  color: #333;
+  /*overflow: hidden;*/
+  /*white-space: nowrap;*/
+  /*text-overflow: ellipsis;*/
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+#room-list article h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+#room-list article .card-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+#room-list article p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+#room-list article .price {
+  font-weight: bold;
+  color: #ff5722; /* 강조 색상 */
+  text-align: center;
+}
+
+#room-list .card-text span {
+  font-weight: bold;
+  color: #000;
+}
+
+
+/* 다른 스타일은 그대로 유지 */
+.article-price {
+  color: #666;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.article-address {
+  font-size: 13px;
+  color: #212529;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+  line-height: 1.5;
+}
+
+/* a 태그 기본 스타일 제거 */
+#room-list a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 글자 색상 상속 */
+}
+
+#room-list a:hover {
+  text-decoration: none; /* 호버 시에도 밑줄 제거 */
+  color: inherit; /* 글자 색상 유지 */
+}
+
+/* 더보기 버튼 컨테이너 */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 더보기 버튼 스타일 */
+.load-more-btn {
   font-size: 16px;
   font-weight: bold;
-  color: #007bff;
+  color: #000;
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 호버 시 스타일 */
+.load-more-btn:hover {
+  color: #ff5722;
+  background-color: #f9f9f9;
+}
+
+/* 버튼 활성화 시 스타일 */
+.load-more-btn:active {
+  background-color: #e0e0e0;
+  color: #ff5722;
 }
