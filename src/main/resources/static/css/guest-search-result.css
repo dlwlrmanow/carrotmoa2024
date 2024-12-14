@@ -126,3 +126,35 @@
   text-decoration: none; /* 호버 시에도 밑줄 제거 */
   color: inherit; /* 글자 색상 유지 */
 }
+
+/* 더보기 버튼 컨테이너 */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 더보기 버튼 스타일 */
+.load-more-btn {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 호버 시 스타일 */
+.load-more-btn:hover {
+  color: #ff5722;
+  background-color: #f9f9f9;
+}
+
+/* 버튼 활성화 시 스타일 */
+.load-more-btn:active {
+  background-color: #e0e0e0;
+  color: #ff5722;
+}
