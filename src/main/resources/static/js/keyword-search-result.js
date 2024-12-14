@@ -2,24 +2,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParam = new URLSearchParams(window.location.search);
     const keyword = urlParam.get("keyword");
     document.title = `${keyword} 단기 임대 숙소 | 당근모아`;
+    let lastId = 0;
+    const limit = 4;
+    const moreBtn = document.getElementById("load-more-button");
 
-    // 검색 결과 가져오기
-    if(keyword) {
-        fetch(`/api/guest/search?keyword=${keyword}`)
-            .then(response => response.json()) // json객체로 데이터 받아오기
+    if (keyword) {
+        fetchData(keyword, lastId, limit);
+    }
+
+    function fetchData(keyword, lastId, limit) {
+        fetch(`/api/guest/search?keyword=${keyword}&lastId=${lastId}&limit=${limit}`)
+            .then(response => response.json())
             .then(rooms => {
-                if(!rooms || rooms.length === 0) {
-                    // document.getElementById("results").innerHTML = '<p> 검색 결과 없음 </p>';
-                    noResultAlertMessage();
-                } else {
+                if(rooms && rooms.length > 0) {
                     renderKeywordSearchResults(rooms);
+                    lastId = rooms[rooms.length - 1].id;
+                } else {
+                    noResultAlertMessage();
+                    moreBtn.style.display = "none";
                 }
             })
             .catch(error => {
                 console.error("error: ", error);
                 displayErrorMessage();
-            })
+            });
     }
+    moreBtn.addEventListener("click", function () {
+        fetchData(keyword, lastId, limit);
+    });
+
     function renderKeywordSearchResults(rooms) {
         const roomListContainer = document.getElementById("room-list");
         const roomTemplate = document.getElementById('item-template');

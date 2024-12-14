@@ -25,7 +25,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
             "LEFT JOIN accommodation_space s ON a.id = s.accommodation_id " +
             "WHERE MATCH(a.lot_address) AGAINST(:keyword IN BOOLEAN MODE) " +
             "AND p.is_deleted = 0 " +
-            "AND a.id > :lastId " +
+            "AND (:lastId IS NULL OR a.id > :lastId) " +
             "GROUP BY a.id, p.title, a.road_address, a.price " +
             "ORDER BY a.id ASC " +
             "LIMIT :limit",
