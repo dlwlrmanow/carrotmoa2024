@@ -26,6 +26,7 @@ public class AccommodationDetailResponse {
     private List<String> imageUrls;
     private List<Long> amenityIds;
     private List<Integer> spaceCounts;
+    private List<String> comment;
 
     @QueryProjection
     public AccommodationDetailResponse(Long id, String title, int totalArea, String roadAddress, String lotAddress, String detailAddress,

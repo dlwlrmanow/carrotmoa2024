@@ -40,14 +40,14 @@ public class AccommodationDetailCustomRepositoryImpl implements AccommodationDet
                         accommodation.totalFloor,
                         accommodation.price,
                         post.content,
-                        accommodation.transportationInfo,
-                        review.comment,
-                        userProfile.nickname
+                        accommodation.transportationInfo
+//                        review.comment
+//                        userProfile.nickname
                 ))
                 .from(accommodation)
                 .leftJoin(post).on(accommodation.postId.eq(post.id))
                 .leftJoin(review).on(review.postId.eq(post.id))
-                .leftJoin(userProfile).on(userProfile.userId.eq(review.userId))
+//                .leftJoin(userProfile).on(userProfile.userId.eq(review.userId))
                 .where(accommodation.id.eq(id))
                 .fetchOne();
 
@@ -75,6 +75,11 @@ public class AccommodationDetailCustomRepositoryImpl implements AccommodationDet
             detailResponse.setAmenityIds(amenityIds);
             detailResponse.setSpaceCounts(spaceCounts);
         }
+        List<String> comment = jpaQueryFactory
+                .select(review.comment)
+                .from(review)
+                .where(review.postId.eq(post.id))
+                .fetch();
 
         return detailResponse;
     }
