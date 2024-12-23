@@ -2,6 +2,7 @@ package carrotmoa.carrotmoa.repository;
 
 import carrotmoa.carrotmoa.entity.*;
 import carrotmoa.carrotmoa.model.response.AccommodationDetailResponse;
+import carrotmoa.carrotmoa.model.response.AccommodationReviewResponse;
 import carrotmoa.carrotmoa.model.response.HostManagedAccommodationResponse;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
@@ -41,13 +42,9 @@ public class AccommodationDetailCustomRepositoryImpl implements AccommodationDet
                         accommodation.price,
                         post.content,
                         accommodation.transportationInfo
-//                        review.comment
-//                        userProfile.nickname
                 ))
                 .from(accommodation)
                 .leftJoin(post).on(accommodation.postId.eq(post.id))
-                .leftJoin(review).on(review.postId.eq(post.id))
-//                .leftJoin(userProfile).on(userProfile.userId.eq(review.userId))
                 .where(accommodation.id.eq(id))
                 .fetchOne();
 
@@ -70,16 +67,26 @@ public class AccommodationDetailCustomRepositoryImpl implements AccommodationDet
                 .where(accommodationSpace.accommodationId.eq(id))
                 .fetch();
 
+        // review
+        List<AccommodationReviewResponse> reviews = jpaQueryFactory
+                .select(Projections.fields(AccommodationReviewResponse.class,
+                        userProfile.nickname.as("nickname"),
+                        review.comment.as("comment"),
+                        review.createdAt.as("createdAt")
+                ))
+                .from(review)
+                .join(userProfile).on(userProfile.userId.eq(review.userId))
+                .join(post).on(review.postId.eq(post.id))
+                .join(accommodation).on(post.id.eq(accommodation.postId))
+                .where(accommodation.id.eq(id))
+                .fetch();
+
         if (detailResponse != null) {
             detailResponse.setImageUrls(imageUrls);
             detailResponse.setAmenityIds(amenityIds);
             detailResponse.setSpaceCounts(spaceCounts);
+            detailResponse.setReviews(reviews); // 값이 Null인 경우 빈 배열을 반환
         }
-        List<String> comment = jpaQueryFactory
-                .select(review.comment)
-                .from(review)
-                .where(review.postId.eq(post.id))
-                .fetch();
 
         return detailResponse;
     }

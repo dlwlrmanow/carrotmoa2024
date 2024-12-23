@@ -26,23 +26,23 @@ public class AccommodationDetailResponse {
     private List<String> imageUrls;
     private List<Long> amenityIds;
     private List<Integer> spaceCounts;
-    private List<String> comment;
+    private List<AccommodationReviewResponse> reviews;
 
-    @QueryProjection
-    public AccommodationDetailResponse(Long id, String title, int totalArea, String roadAddress, String lotAddress, String detailAddress,
-        Integer floor, Integer totalFloor, BigDecimal price, String content, String transportationInfo) {
-        this.id = id;
-        this.title = title;
-        this.totalArea = totalArea;
-        this.roadAddress = roadAddress;
-        this.lotAddress = lotAddress;
-        this.detailAddress = detailAddress;
-        this.floor = floor;
-        this.totalFloor = totalFloor;
-        this.price = price;
-        this.content = content;
-        this.transportationInfo = transportationInfo;
-    }
+//    @QueryProjection
+//    public AccommodationDetailResponse(Long id, String title, int totalArea, String roadAddress, String lotAddress, String detailAddress,
+//        Integer floor, Integer totalFloor, BigDecimal price, String content, String transportationInfo) {
+//        this.id = id;
+//        this.title = title;
+//        this.totalArea = totalArea;
+//        this.roadAddress = roadAddress;
+//        this.lotAddress = lotAddress;
+//        this.detailAddress = detailAddress;
+//        this.floor = floor;
+//        this.totalFloor = totalFloor;
+//        this.price = price;
+//        this.content = content;
+//        this.transportationInfo = transportationInfo;
+//    }
 }
 
 

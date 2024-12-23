@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko"
+      layout:decorate="~{layout/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="${room.title} + ' 단기임대 숙소 | 당근모아'"> 단기임대 숙소 | 당근모아 </title>
+    <link rel="stylesheet" th:href="@{/css/guest-room-detail.css}"/>
+    <script th:src="@{/js/booking_info.js}"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+</head>
+
+<main layout:fragment="main">
+    <section class="content">
+        <div class="flex">
+            <div class="room_detail" id="room-detail-info">
+                <div class="room_info">
+                    <div class="title">
+                        <strong>우리집🏡</strong>
+                    </div>
+                    <p class="addr_text">서울시 여러분</p>
+                    <div class="image_swiper"></div>
+                </div>
+                <div class="room_info">
+                    <p class="title">소개합니다</p>
+                    <div class="title_text">
+                        크리스마스로 꾸민 우리 집을 소개합니다:-)
+                        <br>
+                        따뜻한 벽난로가 있는
+                    </div>
+                </div>
+                <div class="room_info">
+                    <p class="title">방 이용 방법</p>
+                    <div class="title_text">
+                        입주는 비대면으로 이루어지며,
+                        <br>
+                        계약이 확정되는 경우
+                        <br>
+                        안내메세지를 보내드립니다!
+                        <br>
+                        <br>
+                        주의사항 🚫
+                        <br>
+                        실내흡연 금지, 반려동물 금지, 침대소파러그에 음식물 금지
+                    </div>
+                </div>
+                <div class="room_info">
+                    <p class="title">공간 기본 정보</p>
+                    <div class="place_box">
+                        <ul class="place_list">
+                            <li>
+                                <span><img class="space_room_img" src="https://carrots-bucket.s3.ap-northeast-2.amazonaws.com/room_space_icon/icon_room.svg" alt="방 이미지"></span>
+                                <p>방</p>
+                            </li>
+                            <li>
+                                <span><img class="space_restroom_img" src="https://carrots-bucket.s3.ap-northeast-2.amazonaws.com/room_space_icon/icon_restroom.svg" alt="화장실 이미지"></span>
+                                <p>화장실</p>
+                            </li>
+                            <li>
+                                <span><img class="space_kitchen_img" src="https://carrots-bucket.s3.ap-northeast-2.amazonaws.com/room_space_icon/icon_livingroom.svg" alt="주방 이미지"></span>
+                                <p>거실</p>
+                            </li>
+                            <li>
+                                <span><img class="space_living_img" src="https://carrots-bucket.s3.ap-northeast-2.amazonaws.com/room_space_icon/icon_kitchen.svg" alt="거실 이미지"></span>
+                                <p>주방</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="room_info">
+                    <p class="title">기본 옵션</p>
+                    <ul class="option">
+                        <li>
+                            <span><img src="/images/webpc/icon_refrigerator.svg" alt=""></span>
+                            <p>냉장고</p>
+                        </li>
+                        <li>
+                            <span><img src="/images/webpc/icon_washer.svg" alt=""></span>
+                            <p>세탁기</p>
+                        </li>
+                        <li>
+                            <span><img src="/images/webpc/icon_air.svg" alt=""></span>
+                            <p>에어컨</p>
+                        </li>
+                        <li>
+                            <span><img src="/images/webpc/icon_sink.svg" alt=""></span>
+                            <p>싱크대</p>
+                        </li>
+                        <li>
+                            <span><img src="/images/webpc/icon_bed.svg" alt=""></span>
+                            <p>침대</p>
+                        </li>
+                        <li>
+                            <span><img src="/images/webpc/icon_tv.svg" alt=""></span>
+                            <p>TV</p>
+                        </li>
+                        <li>
+                            <span><img src="/images/webpc/icon_wifi.svg" alt=""></span>
+                            <p>와이파이</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="room_info">
+                    <p class="title">교통 &amp; 위치</p>
+                    <div class="title_text">
+                        서울특별시 영등포구 여의도동 14-5 여의도아크로폴리스 8층
+                    </div>
+                    <div class="title_text">
+                        🔷️서울역, 홍대, 강남까지 지하철, 버스 모두 편리한 교통 요충지<br>  (9호선, 버스정류장 도보 3분)<br>🔷️숙소 앞 핫플/카페/맛집 다수<br>  (스타벅스, 파리크로상, 아티제, 요아정, 스시, 중식, 일식, 정식 등)<br>🔷️국회의사당 인근 주요 기업 본사 밀집 지역 도보 출퇴근 가능<br>
+                    </div>
+                </div>
+                <div class="profile">
+                    <dl>
+                        <dt class="profile_img">
+                            <img src="" alt="호스트 프로필 사진" class="host_pic">
+                        </dt>
+                        <dd>
+                            <div class="profile_name">
+                                <strong>dlwo</strong>
+                            </div>
+                            <p class="introduce">내 집처럼 편안한 공간을 즐기세요 🐻‍️</p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="room_info">
+                    <p class="title">이용 후기</p>
+                    <ul class="review_list">
+                        <li>
+                            <div class="review_info">
+                                <span class="review_item" id="guest_id">황*민</span>
+                                <span class="review_item" id="review_date"> 2024년 12월 </span>
+                            </div>
+                            <div class="review_text">
+                                굿굿
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="room_sticky">
+                <div class="top_icon">
+                    <button class="btn_like" id="likeButton" type="button">
+                        <span class="blind">찜하기</span>
+                    </button>
+                </div>
+                <div class="room_pay">
+                    <p>
+                        <strong id="room_info_price">0 </strong><em>원</em>
+                        <span>/1박</span>
+                    </p>
+                    <ul class="place_list">
+                        <li>
+                            <p>방 </p>
+                        </li>
+                        <li>
+                            <p>화장실 </p>
+                        </li>
+                        <li>
+                            <p>거실 </p>
+                        </li>
+                        <li>
+                            <p>주방 </p>
+                        </li>
+                    </ul>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </section>
+</main>
